@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission Stérilisation ILCV — Éco-Gestion 1HPS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --teal-900:#08302E;
+  --teal-800:#0C433F;
+  --teal-700:#0E5B54;
+  --teal-500:#159082;
+  --teal-300:#5FC6B6;
+  --mint-100:#E7F6F2;
+  --mint-50:#F4FBF9;
+  --coral:#F25C54;
+  --coral-dark:#D8453D;
+  --gold:#F2A649;
+  --ink:#0E2523;
+  --ink-soft:#3C5450;
+  --paper:#FAF9F5;
+  --white:#FFFFFF;
+  --line:#D9E7E3;
+  --ok:#2E9E63;
+  --ok-bg:#E4F6EB;
+  --bad:#D8453D;
+  --bad-bg:#FBE9E7;
+  --shadow: 0 6px 24px rgba(11,63,58,0.08);
+  --radius: 16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  line-height:1.55;
+}
+h1,h2,h3,h4{
+  font-family:'Space Grotesk',sans-serif;
+  color:var(--teal-900);
+  margin:0 0 .4em 0;
+  line-height:1.15;
+}
+p{margin:0 0 1em 0;}
+a{color:var(--teal-700);}
+img{max-width:100%;display:block;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+button{font-family:inherit;cursor:pointer;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background:linear-gradient(160deg,var(--teal-900) 0%, var(--teal-700) 62%, var(--teal-500) 100%);
+  color:var(--mint-100);
+  overflow:hidden;
+  padding:56px 0 40px;
+}
+.hero-top{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:36px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.02em;}
+.brand .heart-badge{width:38px;height:38px;flex:none;}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  color:var(--mint-100);
+  padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600;
+}
+.hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;}
+.hero h1{color:var(--white);font-size:2.5rem;max-width:520px;}
+.hero .tagline{color:var(--mint-100);font-size:1.05rem;max-width:480px;opacity:.92;}
+.hero-cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+.btn{
+  border:none;border-radius:12px;padding:13px 22px;font-weight:700;font-size:.95rem;
+  display:inline-flex;align-items:center;gap:8px;transition:transform .15s ease;
+}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--coral);color:#fff;}
+.btn-primary:hover{background:var(--coral-dark);}
+.btn-ghost{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,.4);}
+.btn-ghost:hover{background:rgba(255,255,255,0.18);}
+.ekg-box{position:relative;height:180px;}
+.ekg-box svg{width:100%;height:100%;}
+.ekg-line{fill:none;stroke:var(--coral);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.6s ease forwards .3s;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+.pulse-dot{fill:var(--gold);opacity:0;animation:pulseshow 2.6s ease forwards .3s;}
+@keyframes pulseshow{0%,80%{opacity:0;}90%{opacity:1;}100%{opacity:1;}}
+
+/* mascot heart */
+.mascot{width:100%;height:100%;}
+.mascot .beat{animation:beat 1.8s ease-in-out infinite;transform-origin:center;}
+@keyframes beat{0%,100%{transform:scale(1);}45%{transform:scale(1.08);}}
+
+/* ---------- NAV ---------- */
+.tabsbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,249,245,0.96);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.tabs{
+  max-width:1040px;margin:0 auto;padding:10px 24px;
+  display:flex;gap:6px;overflow-x:auto;
+}
+.tab-btn{
+  background:transparent;border:1.5px solid transparent;border-radius:10px;
+  padding:9px 16px;font-weight:700;font-size:.88rem;color:var(--ink-soft);
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+}
+.tab-btn i{font-size:.85em;}
+.tab-btn.active{background:var(--teal-900);color:#fff;}
+.tab-btn:not(.active):hover{background:var(--mint-100);color:var(--teal-900);}
+
+/* ---------- LAYOUT ---------- */
+main{padding:48px 0 80px;}
+.panel{display:none;animation:fadein .35s ease;}
+.panel.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--teal-700);font-weight:700;font-size:.8rem;
+  background:var(--mint-100);padding:5px 12px;border-radius:999px;margin-bottom:14px;
+}
+.section-head{margin-bottom:28px;}
+.section-head h2{font-size:1.7rem;}
+.section-head .sub{color:var(--ink-soft);font-size:1rem;max-width:640px;}
+
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 24px;
+  box-shadow:var(--shadow);
+}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:800px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+.icon-circle{
+  width:46px;height:46px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#fff;flex:none;
+}
+.bg-teal{background:var(--teal-700);}
+.bg-coral{background:var(--coral);}
+.bg-gold{background:var(--gold);}
+.bg-purple{background:#8A63D2;}
+.bg-orange{background:#E38A3C;}
+.bg-blue{background:#3C7DE3;}
+
+.stat-card{display:flex;flex-direction:column;gap:6px;}
+.stat-card .num{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--teal-900);}
+.stat-card .lbl{font-size:.85rem;color:var(--ink-soft);}
+
+.info-box{
+  background:var(--mint-50);border:1px dashed var(--teal-300);
+  border-radius:14px;padding:16px 18px;font-size:.92rem;color:var(--ink-soft);
+  display:flex;gap:12px;align-items:flex-start;
+}
+.info-box i{color:var(--teal-700);margin-top:2px;}
+
+.caution-box{
+  background:#FFF7EA;border:1px dashed var(--gold);
+  border-radius:14px;padding:16px 18px;font-size:.88rem;color:#6b4b12;
+  display:flex;gap:12px;align-items:flex-start;margin-top:16px;
+}
+.caution-box i{color:var(--gold);margin-top:2px;}
+
+.divider-ekg{width:100%;height:36px;margin:44px 0;opacity:.5;}
+.divider-ekg svg{width:100%;height:100%;}
+
+/* function/ norm cards */
+.fn-card,.norm-card{display:flex;flex-direction:column;gap:10px;}
+.fn-card h4,.norm-card h4{font-size:1rem;margin:0;}
+.fn-card p,.norm-card p{font-size:.87rem;color:var(--ink-soft);margin:0;}
+
+/* steps timeline (démarche qualité) */
+.timeline{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;}
+.timeline .tstep{flex:1;min-width:150px;display:flex;flex-direction:column;gap:8px;position:relative;padding:18px;}
+.timeline .tstep:not(:last-child)::after{
+  content:"\f061";font-family:"Font Awesome 6 Free";font-weight:900;
+  position:absolute;right:-6px;top:36px;color:var(--teal-300);font-size:1rem;
+}
+@media(max-width:800px){.timeline .tstep:not(:last-child)::after{display:none;}}
+
+/* exercise blocks */
+.exercise{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow);margin-top:20px;
+}
+.exercise-tag{
+  display:inline-flex;align-items:center;gap:8px;background:var(--teal-900);color:#fff;
+  font-size:.78rem;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:14px;
+}
+.exercise h3{font-size:1.15rem;}
+.exercise .instr{color:var(--ink-soft);font-size:.92rem;margin-bottom:16px;}
+
+table.qtable{width:100%;border-collapse:collapse;margin-top:10px;}
+table.qtable th,table.qtable td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;font-size:.9rem;}
+table.qtable th{background:var(--mint-100);color:var(--teal-900);width:38%;}
+table.qtable input[type=text]{
+  width:100%;border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:.9rem;
+}
+table.qtable input[type=text]:focus{outline:none;border-color:var(--teal-500);}
+.mini-input{width:70px !important;display:inline-block;}
+
+.btn-check{background:var(--teal-700);color:#fff;}
+.btn-check:hover{background:var(--teal-900);}
+.btn-reset{background:transparent;color:var(--ink-soft);border:1.5px solid var(--line);}
+.btn-reset:hover{border-color:var(--ink-soft);}
+.btn-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+
+.feedback{margin-top:16px;padding:12px 16px;border-radius:10px;font-size:.9rem;font-weight:600;display:none;}
+.feedback.show{display:block;}
+.feedback.ok{background:var(--ok-bg);color:var(--ok);}
+.feedback.warn{background:#FFF3D6;color:#8a6416;}
+.feedback.bad{background:var(--bad-bg);color:var(--bad);}
+
+input.correct{border-color:var(--ok) !important;background:var(--ok-bg);}
+input.incorrect{border-color:var(--bad) !important;background:var(--bad-bg);}
+
+/* select chips for exercises */
+.chip-item{
+  background:var(--mint-50);border:1.5px solid var(--line);border-radius:12px;
+  padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;color:var(--ink);
+}
+.chip-item i{color:var(--teal-700);width:22px;text-align:center;font-size:1.05rem;}
+.chip-item select{
+  margin-left:auto;border:1.5px solid var(--line);border-radius:8px;padding:6px 8px;font-family:inherit;font-size:.82rem;background:#fff;
+}
+.chip-item.state-correct{border-color:var(--ok);background:var(--ok-bg);}
+.chip-item.state-incorrect{border-color:var(--bad);background:var(--bad-bg);}
+
+.circuit-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:800px){.circuit-grid{grid-template-columns:repeat(2,1fr);}}
+.circuit-card{
+  background:var(--mint-50);border:1.5px solid var(--line);border-radius:14px;padding:14px;text-align:center;
+}
+.circuit-card .ic{width:44px;height:44px;border-radius:10px;background:var(--teal-700);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:1.1rem;}
+.circuit-card .lbl{font-weight:700;font-size:.85rem;margin-bottom:8px;min-height:2.4em;}
+.circuit-card select{width:100%;padding:7px;border-radius:8px;border:1.5px solid var(--line);font-family:inherit;font-weight:700;text-align:center;}
+.circuit-card.state-correct{border-color:var(--ok);background:var(--ok-bg);}
+.circuit-card.state-incorrect{border-color:var(--bad);background:var(--bad-bg);}
+
+.org-chart{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:10px;}
+.org-box{
+  border-radius:12px;padding:12px 16px;text-align:center;font-weight:700;font-size:.85rem;
+  min-width:210px;border:1.5px solid var(--line);
+}
+.org-row{display:flex;gap:60px;justify-content:center;margin:6px 0;flex-wrap:wrap;}
+.org-connector{width:2px;height:20px;background:var(--line);}
+.org-box.given{background:var(--teal-900);color:#fff;}
+.org-box select{width:100%;margin-top:6px;padding:6px;border-radius:8px;border:1.5px solid var(--line);font-family:inherit;font-size:.82rem;}
+.org-box.state-correct{border-color:var(--ok);background:var(--ok-bg);}
+.org-box.state-incorrect{border-color:var(--bad);background:var(--bad-bg);}
+
+.reveal-toggle{
+  background:none;border:none;color:var(--teal-700);font-weight:700;font-size:.85rem;
+  display:inline-flex;align-items:center;gap:6px;padding:0;margin-top:10px;
+}
+.reveal-content{
+  display:none;margin-top:12px;background:var(--mint-50);border-left:3px solid var(--teal-500);
+  padding:14px 16px;border-radius:0 10px 10px 0;font-size:.88rem;color:var(--ink-soft);
+}
+.reveal-content.show{display:block;}
+
+textarea{
+  width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:inherit;font-size:.9rem;resize:vertical;min-height:70px;
+}
+textarea:focus{outline:none;border-color:var(--teal-500);}
+
+.match-row{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line);}
+.match-row:last-child{border-bottom:none;}
+.match-left{flex:1;font-weight:700;font-size:.88rem;color:var(--teal-900);}
+.match-right{flex:2;font-size:.85rem;color:var(--ink-soft);}
+.match-row select{border:1.5px solid var(--line);border-radius:8px;padding:6px 8px;font-family:inherit;font-weight:700;}
+.match-row.state-correct{background:var(--ok-bg);}
+.match-row.state-incorrect{background:var(--bad-bg);}
+
+.score-pill{
+  display:inline-flex;align-items:center;gap:8px;background:var(--teal-900);color:#fff;
+  padding:8px 16px;border-radius:999px;font-weight:700;font-size:.9rem;
+}
+
+.sources{font-size:.78rem;color:var(--ink-soft);margin-top:8px;}
+.sources a{color:var(--teal-700);}
+
+footer{background:var(--teal-900);color:var(--mint-100);padding:36px 0;font-size:.85rem;}
+footer a{color:var(--mint-100);text-decoration:underline;}
+footer .credit{margin-top:14px;font-weight:700;color:#fff;}
+
+.check-icon-ok{color:var(--ok);}
+.check-icon-bad{color:var(--bad);}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="brand">
+        <svg class="heart-badge" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.2 2 4.5 5.6 4c2.1-.3 3.9.8 5 2.4C11.7 4.8 13.5 3.7 15.6 4c3.6.5 5.3 4.2 3.6 7.7C21.5 16.4 12 21 12 21Z" stroke="#F25C54" stroke-width="1.6" fill="rgba(242,92,84,0.25)"/></svg>
+        ILCV · Éco-Gestion 1HPS
+      </div>
+      <div class="hero-badges">
+        <span class="chip"><i class="fa-solid fa-graduation-cap"></i> 1re Bac Pro HPS</span>
+        <span class="chip"><i class="fa-solid fa-clock"></i> 3 × 1h30</span>
+      </div>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <h1>Mission Stérilisation ILCV</h1>
+        <p class="tagline">Découvre l'environnement professionnel d'un établissement de santé et comprends comment l'ILCV organise sa production pour soigner en toute sécurité. Ton métier, ta rigueur, ton savoir-faire : des super-pouvoirs pour la santé.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="goTo('s1')"><i class="fa-solid fa-play"></i> Commencer la séance 1</button>
+          <button class="btn btn-ghost" onclick="goTo('home')"><i class="fa-solid fa-clipboard-list"></i> Voir la fiche séquence</button>
+        </div>
+      </div>
+      <div class="ekg-box">
+        <svg viewBox="0 0 400 180">
+          <polyline class="ekg-line" points="0,90 60,90 85,30 110,150 135,90 400,90"/>
+          <circle class="pulse-dot" cx="392" cy="90" r="6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<div class="tabsbar">
+  <nav class="tabs" id="mainNav">
+    <button class="tab-btn active" data-target="home" onclick="goTo('home')"><i class="fa-solid fa-house"></i> Présentation</button>
+    <button class="tab-btn" data-target="s1" onclick="goTo('s1')"><i class="fa-solid fa-hospital"></i> Séance 1 — Qui est l'ILCV ?</button>
+    <button class="tab-btn" data-target="s2" onclick="goTo('s2')"><i class="fa-solid fa-gears"></i> Séance 2 — La production</button>
+    <button class="tab-btn" data-target="s3" onclick="goTo('s3')"><i class="fa-solid fa-shield-heart"></i> Séance 3 — Qualité &amp; normes</button>
+  </nav>
+</div>
+
+<main class="wrap">
+
+<!-- ============ HOME / FICHE SEQUENCE ============ -->
+<section id="home" class="panel active">
+  <div class="section-head">
+    <span class="section-eyebrow"><i class="fa-solid fa-star"></i> Fiche séquence</span>
+    <h2>Découvrir l'environnement professionnel et les choix de production d'un établissement de santé</h2>
+    <p class="sub">Chaque geste compte, ton travail protège : à l'issue de cette séquence, tu sauras analyser l'organisation d'un établissement de santé comme un(e) vrai(e) professionnel(le) de la stérilisation.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="icon-circle bg-teal"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h4 style="margin-top:14px;">Niveau &amp; discipline</h4>
+      <p style="color:var(--ink-soft);font-size:.9rem;">1re Baccalauréat Professionnel Hygiène, Propreté, Stérilisation (HPS) — Économie-gestion</p>
+    </div>
+    <div class="card">
+      <div class="icon-circle bg-coral"><i class="fa-solid fa-clock"></i></div>
+      <h4 style="margin-top:14px;">Durée indicative</h4>
+      <p style="color:var(--ink-soft);font-size:.9rem;">3 séances de 1h30 (+ 1 séance d'évaluation formative en option)</p>
+    </div>
+    <div class="card">
+      <div class="icon-circle bg-gold"><i class="fa-solid fa-puzzle-piece"></i></div>
+      <h4 style="margin-top:14px;">Modules du programme mobilisés</h4>
+      <p style="color:var(--ink-soft);font-size:.9rem;">Module 1 — Découvrir l'environnement d'une entreprise<br>Module 2 — Les choix d'une entreprise en matière de production</p>
+    </div>
+    <div class="card">
+      <div class="icon-circle bg-purple"><i class="fa-solid fa-hospital"></i></div>
+      <h4 style="margin-top:14px;">Établissement support</h4>
+      <p style="color:var(--ink-soft);font-size:.9rem;">Institut Lorrain du Cœur et des Vaisseaux Louis Mathieu (ILCV), CHU de Nancy, Vandœuvre-lès-Nancy (Brabois)</p>
+    </div>
+  </div>
+
+  <div class="divider-ekg"><svg viewBox="0 0 1000 40" preserveAspectRatio="none"><polyline points="0,20 400,20 420,4 440,36 460,20 1000,20" fill="none" stroke="#159082" stroke-width="2"/></svg></div>
+
+  <div class="section-head">
+    <span class="section-eyebrow"><i class="fa-solid fa-bullseye"></i> Objectifs pédagogiques</span>
+    <h2>À l'issue de cette séquence, tu sauras :</h2>
+  </div>
+  <div class="grid-4">
+    <div class="card fn-card">
+      <div class="icon-circle bg-teal"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h4>Caractériser</h4>
+      <p>Un secteur d'activité et une forme d'organisation.</p>
+    </div>
+    <div class="card fn-card">
+      <div class="icon-circle bg-coral"><i class="fa-solid fa-people-arrows"></i></div>
+      <h4>Identifier les agents économiques</h4>
+      <p>Et les échanges d'une entreprise avec son environnement.</p>
+    </div>
+    <div class="card fn-card">
+      <div class="icon-circle bg-gold"><i class="fa-solid fa-gears"></i></div>
+      <h4>Identifier les fonctions</h4>
+      <p>Et les facteurs de production d'une entreprise.</p>
+    </div>
+    <div class="card fn-card">
+      <div class="icon-circle bg-purple"><i class="fa-solid fa-shield-heart"></i></div>
+      <h4>Comprendre le rôle des normes</h4>
+      <p>Dans une démarche qualité, en lien direct avec le métier visé.</p>
+    </div>
+  </div>
+
+  <div class="divider-ekg"><svg viewBox="0 0 1000 40" preserveAspectRatio="none"><polyline points="0,20 400,20 420,4 440,36 460,20 1000,20" fill="none" stroke="#159082" stroke-width="2"/></svg></div>
+
+  <div class="card" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+    <div class="icon-circle bg-teal" style="width:56px;height:56px;font-size:1.4rem;"><i class="fa-solid fa-route"></i></div>
+    <div style="flex:1;min-width:260px;">
+      <h4>Le parcours de la mission</h4>
+      <p style="color:var(--ink-soft);font-size:.9rem;margin:0;">Séance 1 : qui est l'ILCV ? → Séance 2 : dans les coulisses de la production → Séance 3 : qualité, normes et environnement. En équipe, on va plus loin !</p>
+    </div>
+    <button class="btn btn-primary" onclick="goTo('s1')">Démarrer <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+</section>
+
+<!-- ============ SEANCE 1 ============ -->
+<section id="s1" class="panel">
+  <div class="section-head">
+    <span class="section-eyebrow"><i class="fa-solid fa-hospital"></i> Séance 1 · Module 1</span>
+    <h2>Qui est l'ILCV ?</h2>
+    <p class="sub">Caractériser un secteur d'activité et une organisation — « Comment se caractérise un secteur d'activité ? » / « Comment une entreprise interagit-elle avec son environnement ? »</p>
+  </div>
+
+  <div class="card">
+    <h4><i class="fa-solid fa-comment-medical" style="color:var(--coral);"></i> L'ILCV en quelques mots</h4>
+    <p style="color:var(--ink-soft);">L'Institut Lorrain du Cœur et des Vaisseaux Louis Mathieu (ILCV) est un établissement de santé spécialisé dans les maladies cardio-vasculaires. Il fait partie du CHU de Nancy et est situé sur le site de Brabois à Vandœuvre-lès-Nancy.</p>
+    <div class="grid-4" style="margin-top:16px;">
+      <div class="stat-card"><div class="icon-circle bg-teal"><i class="fa-solid fa-building-shield"></i></div><div class="num">Public</div><div class="lbl">Établissement de santé</div></div>
+      <div class="stat-card"><div class="icon-circle bg-coral"><i class="fa-solid fa-location-dot"></i></div><div class="num">Brabois</div><div class="lbl">Vandœuvre-lès-Nancy</div></div>
+      <div class="stat-card"><div class="icon-circle bg-gold"><i class="fa-solid fa-user-doctor"></i></div><div class="num">800+</div><div class="lbl">Professionnels mobilisés</div></div>
+      <div class="stat-card"><div class="icon-circle bg-purple"><i class="fa-solid fa-heart-pulse"></i></div><div class="num">Lorraine</div><div class="lbl">Et au-delà</div></div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <h4><i class="fa-solid fa-industry" style="color:var(--teal-700);"></i> Son secteur d'activité</h4>
+      <p style="color:var(--ink-soft);font-size:.9rem;">L'ILCV appartient au secteur de la santé. C'est un établissement de santé public, spécialisé dans le cœur et les vaisseaux.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <div class="chip-item"><i class="fa-solid fa-stethoscope"></i> Soins — consultations, interventions chirurgicales, soins spécialisés</div>
+        <div class="chip-item"><i class="fa-solid fa-microscope"></i> Recherche — développer de nouvelles techniques et traitements</div>
+        <div class="chip-item"><i class="fa-solid fa-graduation-cap"></i> Enseignement — former les futurs professionnels de santé</div>
+      </div>
+    </div>
+    <div class="card">
+      <h4><i class="fa-solid fa-people-arrows" style="color:var(--teal-700);"></i> Comment l'ILCV interagit avec son environnement</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <div class="chip-item"><i class="fa-solid fa-user-injured"></i> Patients — bénéficient des soins, donnent leur confiance</div>
+        <div class="chip-item"><i class="fa-solid fa-user-nurse"></i> Professionnels de santé — médecins, infirmiers, IBODE, techniciens de stérilisation, agents HPS…</div>
+        <div class="chip-item"><i class="fa-solid fa-truck-medical"></i> Fournisseurs — matériel médical, dispositifs de stérilisation, produits d'entretien</div>
+        <div class="chip-item"><i class="fa-solid fa-landmark"></i> Institutions &amp; partenaires — CHU, ARS, Assurance maladie, laboratoires, écoles…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px;">
+    <i class="fa-solid fa-circle-info"></i>
+    <div>L'ILCV est au cœur d'un réseau d'échanges pour assurer des soins de qualité et en toute sécurité. Chaque service contribue à la mission principale : soigner avec qualité et sauver des vies.</div>
+  </div>
+
+  <div class="divider-ekg"><svg viewBox="0 0 1000 40" preserveAspectRatio="none"><polyline points="0,20 400,20 420,4 440,36 460,20 1000,20" fill="none" stroke="#159082" stroke-width="2"/></svg></div>
+
+  <!-- RESSOURCE 1 -->
+  <div class="section-eyebrow"><i class="fa-solid fa-book-open"></i> Ressource 1</div>
+  <h3>Fiche d'identité de l'établissement</h3>
+  <div class="card">
+    <p style="color:var(--ink-soft);font-size:.92rem;">L'ILCV est un bâtiment du CHU de Nancy, situé sur le site de Brabois, à Vandœuvre-lès-Nancy. Il porte le nom de Louis Mathieu, pionnier de la cardiologie en Lorraine. Il rassemble les unités du pôle cardio-vasculaire du CHU de Nancy, auparavant dispersées dans l'hôpital d'adultes de Brabois : consultations, secteurs d'hospitalisation, soins intensifs, surveillance continue, réanimation et salles opératoires.</p>
+    <div class="grid-4" style="margin-top:14px;">
+      <div class="stat-card"><div class="icon-circle bg-teal"><i class="fa-solid fa-building"></i></div><div class="num">7 niveaux</div><div class="lbl">24 000 m² de surface utile</div></div>
+      <div class="stat-card"><div class="icon-circle bg-coral"><i class="fa-solid fa-bed"></i></div><div class="num">260 lits</div><div class="lbl">Capacité d'accueil</div></div>
+      <div class="stat-card"><div class="icon-circle bg-gold"><i class="fa-solid fa-calendar-days"></i></div><div class="num">2010</div><div class="lbl">Ouverture progressive (mars–mai)</div></div>
+      <div class="stat-card"><div class="icon-circle bg-purple"><i class="fa-solid fa-euro-sign"></i></div><div class="num">124,79 M€</div><div class="lbl">Investissement total</div></div>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="chip-item"><i class="fa-solid fa-helmet-safety"></i> Travaux — 118,52 M€</div>
+      <div class="chip-item"><i class="fa-solid fa-display"></i> Équipements — 6,27 M€</div>
+    </div>
+    <h4 style="margin-top:18px;">Départements et services</h4>
+    <div class="grid-3">
+      <div class="chip-item"><i class="fa-solid fa-heart-pulse"></i> Cardiologie médicale</div>
+      <div class="chip-item"><i class="fa-solid fa-heart-circle-bolt"></i> Chirurgie cardiaque et vasculaire</div>
+      <div class="chip-item"><i class="fa-solid fa-child-reaching"></i> Cardiologie pédiatrique</div>
+      <div class="chip-item"><i class="fa-solid fa-syringe"></i> Médecine vasculaire</div>
+      <div class="chip-item"><i class="fa-solid fa-flask-vial"></i> Centre d'investigation clinique (recherche)</div>
+      <div class="chip-item"><i class="fa-solid fa-bed-pulse"></i> Réanimation (médicale, chirurgicale, pédiatrique)</div>
+    </div>
+    <p class="sources"><strong>Sources :</strong> Fédération Hospitalière de France, « Le nouvel Institut lorrain du cœur et des vaisseaux Louis Mathieu », hopital.fr ; Le Journal des Entreprises, 2010 ; Infirmiers.com, « Ouverture du nouvel institut lorrain du cœur et des vaisseaux » ; CHU Média.</p>
+  </div>
+
+  <!-- ANNEXE 1 -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Annexe 1 — à compléter par l'élève</span>
+    <h3>Complète le tableau à l'aide de la Ressource 1</h3>
+    <p class="instr">Réponds à chaque question puis clique sur « Vérifier mes réponses ».</p>
+    <table class="qtable">
+      <tr><th>Quel type d'établissement est l'ILCV ? (public / privé)</th><td><input type="text" id="a1q1" placeholder="Ta réponse…"></td></tr>
+      <tr><th>À quel secteur d'activité appartient l'ILCV ?</th><td><input type="text" id="a1q2" placeholder="Ta réponse…"></td></tr>
+      <tr><th>L'ILCV produit-il des biens ou des services ?</th><td><input type="text" id="a1q3" placeholder="Ta réponse…"></td></tr>
+      <tr><th>Cette production est-elle marchande ou non marchande ? Pourquoi ?</th><td><input type="text" id="a1q4" placeholder="Ta réponse…"></td></tr>
+      <tr><th>Combien de lits et combien de niveaux compte l'ILCV ?</th><td>
+        <input type="text" class="mini-input" id="a1q5a" placeholder="lits"> lits &nbsp;·&nbsp;
+        <input type="text" class="mini-input" id="a1q5b" placeholder="niveaux"> niveaux
+      </td></tr>
+      <tr><th>Dans quelle commune et sur quel site est situé l'ILCV ?</th><td><input type="text" id="a1q6" placeholder="Ta réponse…"></td></tr>
+    </table>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkAnnexe1()"><i class="fa-solid fa-circle-check"></i> Vérifier mes réponses</button>
+      <button class="btn btn-reset" onclick="resetAnnexe1()"><i class="fa-solid fa-rotate-right"></i> Recommencer</button>
+    </div>
+    <div class="feedback" id="fb-a1"></div>
+    <div class="caution-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <div>À propos de la question 4 : un hôpital public comme l'ILCV assure une production <strong>non marchande</strong> au sens de la comptabilité nationale, car les soins ne sont pas vendus à un prix couvrant leur coût de production : ils sont très majoritairement financés par la collectivité (Assurance maladie, État), et non payés directement par le patient à leur coût réel.</div>
+    </div>
+  </div>
+
+  <div class="divider-ekg"><svg viewBox="0 0 1000 40" preserveAspectRatio="none"><polyline points="0,20 400,20 420,4 440,36 460,20 1000,20" fill="none" stroke="#159082" stroke-width="2"/></svg></div>
+
+  <!-- CALCUL -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-calculator"></i> Exercice 2 — Calcul</span>
+    <h3>Répartition de l'investissement</h3>
+    <p class="instr">L'investissement total de construction de l'ILCV s'est élevé à <strong>124,79 millions d'euros</strong>, dont <strong>118,52 millions d'euros</strong> de travaux et <strong>6,27 millions d'euros</strong> d'équipements. Calcule la part de chaque poste dans l'investissement total.</p>
+    <div class="grid-2">
+      <div class="card" style="box-shadow:none;">
+        <h4><i class="fa-solid fa-helmet-safety" style="color:var(--teal-700);"></i> Part des travaux</h4>
+        <p style="font-size:.85rem;color:var(--ink-soft);">Formule : Part (%) = (Montant concerné ÷ Investissement total) × 100</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <input type="text" class="mini-input" id="calc1" placeholder="?" style="border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;">
+          <span>%</span>
+        </div>
+      </div>
+      <div class="card" style="box-shadow:none;">
+        <h4><i class="fa-solid fa-display" style="color:var(--teal-700);"></i> Part des équipements</h4>
+        <p style="font-size:.85rem;color:var(--ink-soft);">Formule : Part (%) = (Montant concerné ÷ Investissement total) × 100</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <input type="text" class="mini-input" id="calc2" placeholder="?" style="border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;">
+          <span>%</span>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkCalcul()"><i class="fa-solid fa-circle-check"></i> Vérifier mes calculs</button>
+      <button class="btn btn-reset" onclick="resetCalcul()"><i class="fa-solid fa-rotate-right"></i> Recommencer</button>
+    </div>
+    <div class="feedback" id="fb-calc"></div>
+  </div>
+
+  <!-- AGENTS ECO -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-people-group"></i> Exercice 3 — Les agents économiques</span>
+    <h3>Cite au moins trois agents économiques en relation avec l'ILCV</h3>
+    <p class="instr">Au sens de la comptabilité nationale, et donne un exemple d'échange pour chacun (flux réel ou flux financier). Pense à des acteurs différents : ménages, entreprises, administrations publiques, banques, assurances, associations…</p>
+    <table class="qtable">
+      <tr><th>Agent économique 1</th><td><textarea id="ae1" placeholder="Nom de l'agent, exemple d'échange, nature du flux…"></textarea></td></tr>
+      <tr><th>Agent économique 2</th><td><textarea id="ae2" placeholder="Nom de l'agent, exemple d'échange, nature du flux…"></textarea></td></tr>
+      <tr><th>Agent économique 3</th><td><textarea id="ae3" placeholder="Nom de l'agent, exemple d'échange, nature du flux…"></textarea></td></tr>
+    </table>
+    <button class="reveal-toggle" onclick="toggleReveal('rev-ae')"><i class="fa-solid fa-eye"></i> Voir des exemples de réponses possibles</button>
+    <div class="reveal-content" id="rev-ae">
+      <em>Il ne s'agit que d'exemples parmi d'autres réponses possibles — d'autres agents et échanges sont valables.</em>
+      <ul style="margin:10px 0 0 18px;padding:0;">
+        <li><strong>Ménages</strong> (patients) : flux réel = consultation ou soin reçu ; flux financier = paiement d'un éventuel ticket modérateur.</li>
+        <li><strong>Entreprises</strong> (fournisseurs de matériel médical) : flux réel = livraison de dispositifs médicaux ; flux financier = paiement de la facture par l'ILCV.</li>
+        <li><strong>Administrations publiques</strong> (Assurance maladie, ARS) : flux financier = remboursement des soins, financement/subvention de l'établissement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEANCE 2 ============ -->
+<section id="s2" class="panel">
+  <div class="section-head">
+    <span class="section-eyebrow"><i class="fa-solid fa-gears"></i> Séance 2 · Module 2</span>
+    <h2>Dans les coulisses de la production</h2>
+    <p class="sub">Comprendre comment l'ILCV organise sa production au service des patients — « Comment se structure une entreprise ? » / « Comment une entreprise organise-t-elle sa production ? »</p>
+  </div>
+
+  <div class="info-box">
+    <i class="fa-solid fa-circle-info"></i>
+    <div>L'ILCV est un établissement de santé public qui produit des services de santé : consultations, interventions chirurgicales, hospitalisations, soins intensifs, rééducation, réanimation… Sa production est complexe : elle mobilise de nombreux services, des professionnels qualifiés, des équipements performants et des règles strictes de qualité.</div>
+  </div>
+
+  <h3 style="margin-top:28px;">Les grandes fonctions de l'ILCV</h3>
+  <div class="grid-3">
+    <div class="card fn-card"><div class="icon-circle bg-coral"><i class="fa-solid fa-stethoscope"></i></div><h4>Soins</h4><p>Consultations, interventions chirurgicales, soins intensifs, rééducation… au plus près des patients.</p></div>
+    <div class="card fn-card"><div class="icon-circle bg-teal"><i class="fa-solid fa-laptop-medical"></i></div><h4>Support médical et technique</h4><p>Imagerie, laboratoire, pharmacie, stérilisation, blocs opératoires… des services essentiels à la prise en charge.</p></div>
+    <div class="card fn-card"><div class="icon-circle bg-gold"><i class="fa-solid fa-truck-ramp-box"></i></div><h4>Logistique</h4><p>Achats, gestion des stocks, hôtellerie, restauration, entretien des locaux et du linge…</p></div>
+    <div class="card fn-card"><div class="icon-circle bg-purple"><i class="fa-solid fa-sitemap"></i></div><h4>Gestion et administration</h4><p>Ressources humaines, finances, qualité, informatique, communication… pour piloter l'activité.</p></div>
+    <div class="card fn-card"><div class="icon-circle bg-blue"><i class="fa-solid fa-microscope"></i></div><h4>Recherche et innovation</h4><p>Recherche clinique, essais, amélioration des pratiques… pour préparer la médecine de demain.</p></div>
+  </div>
+
+  <div class="grid-2" style="margin-top:24px;">
+    <div class="card">
+      <h4><i class="fa-solid fa-industry" style="color:var(--teal-700);"></i> Les facteurs de production</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <div class="chip-item"><i class="fa-solid fa-people-group"></i> Le travail — médecins, infirmiers, agents de stérilisation, aides-soignants…</div>
+        <div class="chip-item"><i class="fa-solid fa-building"></i> Le capital — bâtiments, salles opératoires, lits, appareils médicaux, logiciels…</div>
+        <div class="chip-item"><i class="fa-solid fa-box-open"></i> Matières premières &amp; fournitures — médicaments, dispositifs médicaux, linge…</div>
+        <div class="chip-item"><i class="fa-solid fa-diagram-project"></i> Organisation &amp; savoir-faire — protocoles, procédures, normes, coordination</div>
+      </div>
+    </div>
+    <div class="card">
+      <h4><i class="fa-solid fa-shield-heart" style="color:var(--teal-700);"></i> La qualité au cœur de la production</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <div class="chip-item"><i class="fa-solid fa-user-shield"></i> Assurer la sécurité des patients et des professionnels</div>
+        <div class="chip-item"><i class="fa-solid fa-virus-slash"></i> Prévenir les infections associées aux soins</div>
+        <div class="chip-item"><i class="fa-solid fa-barcode"></i> Garantir la traçabilité des dispositifs médicaux</div>
+        <div class="chip-item"><i class="fa-solid fa-arrow-trend-up"></i> Améliorer en continu la qualité des soins</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-ekg"><svg viewBox="0 0 1000 40" preserveAspectRatio="none"><polyline points="0,20 400,20 420,4 440,36 460,20 1000,20" fill="none" stroke="#159082" stroke-width="2"/></svg></div>
+
+  <!-- RESSOURCE 2 -->
+  <div class="section-eyebrow"><i class="fa-solid fa-book-open"></i> Ressource 2</div>
+  <h3>L'organisation d'un établissement de santé et le circuit de la stérilisation</h3>
+  <div class="card">
+    <h4>1. L'organisation d'un établissement de santé</h4>
+    <p style="color:var(--ink-soft);font-size:.9rem;">Un établissement de santé, comme toute organisation, se structure autour de grandes fonctions : direction et administration, ressources humaines, achats et logistique, soins/production, qualité et gestion des risques. Ces fonctions sont interdépendantes : par exemple, la fonction achats approvisionne le service de stérilisation en consommables, tandis que la fonction ressources humaines gère le planning des agents.</p>
+    <h4 style="margin-top:18px;">2. Le service de stérilisation : une mission essentielle</h4>
+    <p style="color:var(--ink-soft);font-size:.9rem;">Le service de stérilisation d'un établissement disposant de salles opératoires (l'ILCV en compte plusieurs) a pour mission de rendre stériles les dispositifs médicaux réutilisables (instruments chirurgicaux) avant chaque intervention. Ce circuit mobilise trois grandes catégories de facteurs de production :</p>
+    <div class="grid-3">
+      <div class="chip-item"><i class="fa-solid fa-building-circle-check"></i> Capital technique — autoclaves, laveurs-désinfecteurs, matériel d'emballage</div>
+      <div class="chip-item"><i class="fa-solid fa-user-gear"></i> Travail — compétences des agents (tri, lavage, conditionnement, contrôle)</div>
+      <div class="chip-item"><i class="fa-solid fa-boxes-stacked"></i> Matières &amp; consommables — dispositifs à traiter, emballages, produits de traçabilité</div>
+    </div>
+    <div class="caution-box">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <div><strong>Précision importante :</strong> ce circuit est présenté comme un modèle type de service de stérilisation en établissement de santé, conforme aux principes des Bonnes Pratiques de Pharmacie Hospitalière (Ligne Directrice LD1, « Préparation des Dispositifs Médicaux Stériles »). Ce n'est pas la description exacte et interne du service de l'ILCV, pour lequel il n'existe pas de source publique suffisamment précise.</div>
+    </div>
+  </div>
+
+  <!-- ANNEXE 2 : circuit ordering -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Annexe 2 — à compléter par l'élève</span>
+    <h3>Remets les étapes du circuit de stérilisation dans l'ordre</h3>
+    <p class="instr">À l'aide de la Ressource 2, attribue à chaque étape son numéro d'ordre (1 à 8) dans le menu déroulant.</p>
+    <div class="circuit-grid" id="circuitGrid"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkCircuit()"><i class="fa-solid fa-circle-check"></i> Vérifier l'ordre</button>
+      <button class="btn btn-reset" onclick="resetCircuit()"><i class="fa-solid fa-rotate-right"></i> Recommencer</button>
+    </div>
+    <div class="feedback" id="fb-circuit"></div>
+  </div>
+
+  <!-- Facteurs de production classification -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Exercice — Les facteurs de production</span>
+    <h3>Classe chaque élément dans la bonne catégorie</h3>
+    <p class="instr">Pour chaque élément lié à la stérilisation, choisis s'il s'agit de capital technique, de travail, ou de matières / consommables.</p>
+    <div id="factorsGrid" style="display:flex;flex-direction:column;gap:10px;"></div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkFactors()"><i class="fa-solid fa-circle-check"></i> Vérifier</button>
+      <button class="btn btn-reset" onclick="resetFactors()"><i class="fa-solid fa-rotate-right"></i> Recommencer</button>
+    </div>
+    <div class="feedback" id="fb-factors"></div>
+  </div>
+
+  <!-- Organigramme -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Exercice — Organigramme du service de stérilisation</span>
+    <h3>Complète l'organigramme simplifié (exemple type)</h3>
+    <p class="instr">À l'aide de la banque de mots, choisis le bon intitulé pour chaque case. Un organigramme montre qui fait quoi et à qui chacun rend compte.</p>
+    <div class="org-chart">
+      <div class="org-box given">Direction des soins / direction de l'établissement</div>
+      <div class="org-connector"></div>
+      <div class="org-row">
+        <div class="org-box" id="org1" style="border-color:#2E9E63;"><i class="fa-solid fa-shield-check" style="color:#2E9E63;"></i>
+          <select id="orgsel1"></select>
+        </div>
+        <div class="org-box" id="org2" style="border-color:#8A63D2;"><i class="fa-solid fa-magnifying-glass" style="color:#8A63D2;"></i>
+          <select id="orgsel2"></select>
+        </div>
+      </div>
+      <div class="org-row">
+        <div class="org-box" id="org3" style="border-color:#E38A3C;"><i class="fa-solid fa-user-group" style="color:#E38A3C;"></i>
+          <select id="orgsel3"></select>
+        </div>
+        <div class="org-box" id="org4" style="border-color:#3C7DE3;"><i class="fa-solid fa-cart-flatbed" style="color:#3C7DE3;"></i>
+          <select id="orgsel4"></select>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkOrg()"><i class="fa-solid fa-circle-check"></i> Vérifier l'organigramme</button>
+      <button class="btn btn-reset" onclick="resetOrg()"><i class="fa-solid fa-rotate-right"></i> Recommencer</button>
+    </div>
+    <div class="feedback" id="fb-org"></div>
+  </div>
+</section>
+
+<!-- ============ SEANCE 3 ============ -->
+<section id="s3" class="panel">
+  <div class="section-head">
+    <span class="section-eyebrow"><i class="fa-solid fa-shield-heart"></i> Séance 3 · Module 2</span>
+    <h2>Qualité, normes et environnement</h2>
+    <p class="sub">Comprendre comment l'ILCV garantit la qualité des soins et s'adapte aux enjeux de son environnement — « Comment une entreprise peut-elle s'adapter à son environnement ? »</p>
+  </div>
+
+  <div class="info-box">
+    <i class="fa-solid fa-circle-info"></i>
+    <div>Dans un établissement de santé, la qualité des soins est essentielle pour la sécurité des patients. L'ILCV met en place des démarches et des outils pour respecter les normes, évaluer ses pratiques et améliorer en continu ses services, tout en prenant en compte son environnement.</div>
+  </div>
+
+  <h3 style="margin-top:28px;">La démarche qualité à l'ILCV</h3>
+  <div class="card">
+    <div class="timeline">
+      <div class="tstep"><div class="icon-circle bg-teal"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h4>Évaluer</h4><p style="font-size:.85rem;color:var(--ink-soft);">Mesurer les pratiques et les résultats : audits, indicateurs, retours des patients et des professionnels.</p></div>
+      <div class="tstep"><div class="icon-circle bg-coral"><i class="fa-solid fa-magnifying-glass"></i></div><h4>Analyser</h4><p style="font-size:.85rem;color:var(--ink-soft);">Identifier les points forts et les points à améliorer.</p></div>
+      <div class="tstep"><div class="icon-circle bg-gold"><i class="fa-solid fa-gears"></i></div><h4>Agir</h4><p style="font-size:.85rem;color:var(--ink-soft);">Mettre en place des actions correctives et préventives.</p></div>
+      <div class="tstep"><div class="icon-circle bg-purple"><i class="fa-solid fa-arrow-trend-up"></i></div><h4>Suivre</h4><p style="font-size:.85rem;color:var(--ink-soft);">Vérifier l'efficacité des actions et poursuivre l'amélioration continue.</p></div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <h4>Les normes et référentiels</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <div class="chip-item"><i class="fa-solid fa-certificate"></i> Norme ISO 9001 — management de la qualité et satisfaction des patients</div>
+        <div class="chip-item"><i class="fa-solid fa-house-medical"></i> Référentiels de la HAS — sécurité des soins et qualité de la prise en charge</div>
+        <div class="chip-item"><i class="fa-solid fa-book-medical"></i> Bonnes pratiques (ex. LD1 — Stérilisation) — sécurité des dispositifs médicaux</div>
+        <div class="chip-item"><i class="fa-solid fa-gavel"></i> Réglementation sanitaire — lois et normes en vigueur (hygiène, traçabilité, sécurité)</div>
+      </div>
+    </div>
+    <div class="card">
+      <h4>L'environnement : des enjeux majeurs</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+        <div class="chip-item"><i class="fa-solid fa-recycle"></i> Réduire les déchets — tri, recyclage, limitation des emballages</div>
+        <div class="chip-item"><i class="fa-solid fa-droplet"></i> Économiser les ressources — eau, énergie</div>
+        <div class="chip-item"><i class="fa-solid fa-basket-shopping"></i> Achats responsables — fournisseurs et produits plus respectueux</div>
+        <div class="chip-item"><i class="fa-solid fa-people-group"></i> Sensibiliser et former chaque professionnel</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-ekg"><svg viewBox="0 0 1000 40" preserveAspectRatio="none"><polyline points="0,20 400,20 420,4 440,36 460,20 1000,20" fill="none" stroke="#159082" stroke-width="2"/></svg></div>
+
+  <!-- RESSOURCE 3 -->
+  <div class="section-eyebrow"><i class="fa-solid fa-book-open"></i> Ressource 3</div>
+  <h3>Les normes applicables à la stérilisation en établissement de santé</h3>
+  <div class="card">
+    <p style="color:var(--ink-soft);font-size:.9rem;">La stérilisation des dispositifs médicaux en France est encadrée par plusieurs textes réglementaires et normes techniques. Ces exigences garantissent la qualité, la sécurité des patients et la traçabilité des dispositifs tout au long de leur cycle de vie.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px;">
+      <div class="chip-item" style="align-items:flex-start;"><i class="fa-solid fa-gavel"></i> <span><strong>Arrêté du 3 juin 2002</strong> relatif à la stérilisation des dispositifs médicaux — impose le respect de la norme NF EN ISO 14937 (exigences générales pour la caractérisation d'un agent stérilisant et la validation d'un procédé de stérilisation).</span></div>
+      <div class="chip-item" style="align-items:flex-start;"><i class="fa-solid fa-stamp"></i> <span><strong>NF EN 556-1 et NF EN 556-2</strong> — fixent les exigences pour qu'un dispositif médical puisse être étiqueté « STÉRILE » (556-1 : stérilisation terminale ; 556-2 : traitement aseptique).</span></div>
+      <div class="chip-item" style="align-items:flex-start;"><i class="fa-solid fa-box-archive"></i> <span><strong>NF EN ISO 11607</strong> — encadre l'emballage des dispositifs médicaux stérilisés, pour garantir le maintien de la stérilité jusqu'à l'utilisation.</span></div>
+      <div class="chip-item" style="align-items:flex-start;"><i class="fa-solid fa-wind"></i> <span><strong>NF S90-351</strong> (« Établissements de santé — Zones à environnement maîtrisé ») — précise les exigences de sécurité sanitaire pour les installations de traitement de l'air dans les secteurs sensibles (secteurs interventionnels/opératoires, pharmacie, stérilisation).</span></div>
+    </div>
+    <p class="sources" style="margin-top:14px;"><strong>Pour aller plus loin :</strong><br>
+      • Arrêté du 3 juin 2002 (Légifrance) : <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000256647" target="_blank" rel="noopener">legifrance.gouv.fr/loda/id/JORFTEXT000000256647</a><br>
+      • Norme NF EN 556-1 (AFNOR) : <a href="https://www.boutique.afnor.org/norme/nf-en-556-1/" target="_blank" rel="noopener">boutique.afnor.org/norme/nf-en-556-1</a><br>
+      • Norme NF EN 556-2 (AFNOR) : <a href="https://www.boutique.afnor.org/norme/nf-en-556-2/" target="_blank" rel="noopener">boutique.afnor.org/norme/nf-en-556-2</a><br>
+      • Norme NF S90-351 (AFNOR) : <a href="https://www.boutique.afnor.org/norme/nf-s90-351/" target="_blank" rel="noopener">boutique.afnor.org/norme/nf-s90-351</a>
+    </p>
+  </div>
+
+  <!-- ANNEXE 3 : matching -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Annexe 3 — à compléter par l'élève</span>
+    <h3>Relie chaque norme à son objet</h3>
+    <p class="instr">Choisis la bonne réponse (A, B, C ou D) pour chaque norme.</p>
+    <div id="matchList"></div>
+    <div style="margin-top:14px;font-size:.83rem;color:var(--ink-soft);">
+      <strong>A.</strong> Emballage des dispositifs médicaux stérilisés &nbsp;·&nbsp;
+      <strong>B.</strong> Exigences générales pour valider un procédé de stérilisation &nbsp;·&nbsp;
+      <strong>C.</strong> Maîtrise de la contamination de l'air dans les zones sensibles &nbsp;·&nbsp;
+      <strong>D.</strong> Conditions pour étiqueter un dispositif « STÉRILE »
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-check" onclick="checkMatch()"><i class="fa-solid fa-circle-check"></i> Vérifier</button>
+      <button class="btn btn-reset" onclick="resetMatch()"><i class="fa-solid fa-rotate-right"></i> Recommencer</button>
+    </div>
+    <div class="feedback" id="fb-match"></div>
+  </div>
+
+  <!-- Vocabulaire -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Exercice — Vocabulaire</span>
+    <h3>Norme, label, RSE</h3>
+    <p class="instr">Complète le tableau en donnant une définition simple et précise pour chaque terme.</p>
+    <table class="qtable">
+      <tr><th>Une norme</th><td><textarea id="voc1" placeholder="Ta définition…"></textarea></td></tr>
+      <tr><th>Un label</th><td><textarea id="voc2" placeholder="Ta définition…"></textarea></td></tr>
+      <tr><th>La RSE (responsabilité sociale des entreprises)</th><td><textarea id="voc3" placeholder="Ta définition…"></textarea></td></tr>
+    </table>
+    <button class="reveal-toggle" onclick="toggleReveal('rev-voc')"><i class="fa-solid fa-eye"></i> Voir une proposition de définition</button>
+    <div class="reveal-content" id="rev-voc">
+      <em>Il s'agit de propositions générales de définitions, pas de la seule formulation possible.</em>
+      <ul style="margin:10px 0 0 18px;padding:0;">
+        <li><strong>Norme :</strong> document de référence qui définit des exigences techniques ou de qualité à respecter, souvent élaboré par un organisme reconnu (ex. AFNOR, ISO).</li>
+        <li><strong>Label :</strong> signe distinctif attribué à un produit ou service qui atteste du respect de critères précis (qualité, origine, environnement…), généralement délivré par un organisme indépendant.</li>
+        <li><strong>RSE :</strong> démarche par laquelle une entreprise intègre des préoccupations sociales, environnementales et économiques dans ses activités, au-delà de ses obligations légales.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Synthèse -->
+  <div class="exercise">
+    <span class="exercise-tag"><i class="fa-solid fa-pen"></i> Question de synthèse</span>
+    <h3>Sécurité des patients et qualité de l'établissement</h3>
+    <p class="instr">En t'appuyant sur les Ressources 1 à 3, explique en quelques lignes pourquoi le respect des normes de stérilisation est à la fois un enjeu de <strong>sécurité pour les patients</strong> et un enjeu de <strong>qualité pour l'établissement</strong>.</p>
+    <textarea id="synthese" style="min-height:140px;" placeholder="Ta réponse rédigée…"></textarea>
+    <button class="reveal-toggle" onclick="toggleReveal('rev-synth')"><i class="fa-solid fa-eye"></i> Voir des pistes de correction</button>
+    <div class="reveal-content" id="rev-synth">
+      Pense à mobiliser ces trois axes :
+      <ul style="margin:10px 0 0 18px;padding:0;">
+        <li><strong>La sécurité des patients</strong> — le respect des normes (arrêté de 2002, NF EN 556, NF EN ISO 11607, NF S90-351…) permet de prévenir les infections associées aux soins en garantissant des dispositifs réellement stériles.</li>
+        <li><strong>La qualité des soins</strong> — les normes assurent la conformité, la fiabilité et la traçabilité de chaque dispositif médical, ce qui s'inscrit dans la démarche qualité (évaluer, analyser, agir, suivre).</li>
+        <li><strong>L'image et la confiance dans l'établissement</strong> — respecter les exigences réglementaires et s'inscrire dans une amélioration continue renforce la confiance des patients et des partenaires envers l'ILCV.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:26px;text-align:center;background:linear-gradient(135deg,var(--teal-900),var(--teal-700));color:#fff;">
+    <h3 style="color:#fff;"><i class="fa-solid fa-trophy" style="color:var(--gold);"></i> Bravo, mission accomplie !</h3>
+    <p style="color:var(--mint-100);max-width:560px;margin:0 auto;">Tu as compris l'organisation d'un établissement de santé, le circuit de stérilisation, les normes et référentiels applicables, ainsi que les enjeux de qualité et d'environnement. Continue à être un(e) acteur(rice) de la qualité et de la sécurité des soins !</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Ressource pédagogique — Économie-gestion, 1re Bac Pro Hygiène, Propreté, Stérilisation (HPS).</div>
+    <div class="sources" style="color:var(--mint-100);opacity:.85;">Sources principales : Fédération Hospitalière de France (hopital.fr) ; Le Journal des Entreprises (2010) ; Infirmiers.com ; CHU Média ; Légifrance ; AFNOR. Le circuit de stérilisation présenté (Ressource 2) est un modèle type conforme aux Bonnes Pratiques de Pharmacie Hospitalière (LD1), et non une description interne exacte du service de l'ILCV.</div>
+    <div class="credit">Leger Isabelle, enseignante Éco-Gestion</div>
+  </div>
+</footer>
+
+<script>
+/* ---------- NAV ---------- */
+function goTo(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.target===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleReveal(id){
+  document.getElementById(id).classList.toggle('show');
+}
+
+function normalize(str){
+  return (str||'').toString().trim().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[-']/g,' ')
+    .replace(/\s+/g,' ');
+}
+
+/* ---------- ANNEXE 1 ---------- */
+const annexe1Fields = [
+  {id:'a1q1', includesAny:['public']},
+  {id:'a1q2', includesAny:['sante']},
+  {id:'a1q3', includesAny:['service']},
+  {id:'a1q4', includesAny:['non marchand']},
+  {id:'a1q5a', includesAny:['260']},
+  {id:'a1q5b', includesAny:['7']},
+  {id:'a1q6', includesAll:['vandoeuvre','brabois']}
+];
+function checkAnnexe1(){
+  let ok=0;
+  annexe1Fields.forEach(f=>{
+    const el=document.getElementById(f.id);
+    const val=normalize(el.value);
+    let good=false;
+    if(f.includesAny) good=f.includesAny.some(k=>val.includes(k));
+    if(f.includesAll) good=f.includesAll.every(k=>val.includes(k));
+    el.classList.remove('correct','incorrect');
+    if(val.length>0) el.classList.add(good?'correct':'incorrect');
+    if(good) ok++;
+  });
+  const fb=document.getElementById('fb-a1');
+  fb.classList.add('show');
+  if(ok===annexe1Fields.length){
+    fb.className='feedback show ok';
+    fb.innerHTML='<i class="fa-solid fa-circle-check"></i> Parfait ! '+ok+'/'+annexe1Fields.length+' réponses correctes. 🎉';
+  }else{
+    fb.className='feedback show warn';
+    fb.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> '+ok+'/'+annexe1Fields.length+' réponses correctes pour l\'instant. Relis la Ressource 1 pour les champs en rouge.';
+  }
+}
+function resetAnnexe1(){
+  annexe1Fields.forEach(f=>{const el=document.getElementById(f.id);el.value='';el.classList.remove('correct','incorrect');});
+  document.getElementById('fb-a1').classList.remove('show');
+}
+
+/* ---------- CALCUL ---------- */
+function checkCalcul(){
+  const v1=parseFloat((document.getElementById('calc1').value||'').replace(',','.'));
+  const v2=parseFloat((document.getElementById('calc2').value||'').replace(',','.'));
+  const c1=document.getElementById('calc1'), c2=document.getElementById('calc2');
+  c1.classList.remove('correct','incorrect');c2.classList.remove('correct','incorrect');
+  const ok1 = !isNaN(v1) && Math.abs(v1-94.98)<=0.3;
+  const ok2 = !isNaN(v2) && Math.abs(v2-5.02)<=0.3;
+  c1.classList.add(ok1?'correct':'incorrect');
+  c2.classList.add(ok2?'correct':'incorrect');
+  const fb=document.getElementById('fb-calc');
+  fb.classList.add('show');
+  if(ok1&&ok2){
+    fb.className='feedback show ok';
+    fb.innerHTML='<i class="fa-solid fa-circle-check"></i> Exact ! Travaux ≈ 94,98 % et Équipements ≈ 5,02 % (total 100 %).';
+  }else{
+    fb.className='feedback show bad';
+    fb.innerHTML='<i class="fa-solid fa-circle-xmark"></i> Pas tout à fait. Reprends la formule : (Montant ÷ 124,79) × 100.';
+  }
+}
+function resetCalcul(){
+  ['calc1','calc2'].forEach(id=>{const el=document.getElementById(id);el.value='';el.classList.remove('correct','incorrect');});
+  document.getElementById('fb-calc').classList.remove('show');
+}
+
+/* ---------- CIRCUIT (Annexe 2) ---------- */
+const circuitSteps=[
+  {id:1,label:'Réception du matériel souillé',icon:'fa-dolly'},
+  {id:2,label:'Pré-désinfection / lavage',icon:'fa-shower'},
+  {id:3,label:'Séchage et contrôle',icon:'fa-magnifying-glass'},
+  {id:4,label:'Conditionnement',icon:'fa-hands-holding-circle'},
+  {id:5,label:'Stérilisation (autoclave)',icon:'fa-temperature-high'},
+  {id:6,label:'Contrôle et traçabilité',icon:'fa-barcode'},
+  {id:7,label:'Stockage',icon:'fa-warehouse'},
+  {id:8,label:'Distribution vers les services utilisateurs',icon:'fa-hand-holding-medical'}
+];
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function buildCircuit(){
+  const grid=document.getElementById('circuitGrid');
+  grid.innerHTML='';
+  const shuffled=shuffle(circuitSteps);
+  shuffled.forEach(s=>{
+    const div=document.createElement('div');
+    div.className='circuit-card';
+    div.dataset.correct=s.id;
+    let opts='<option value="">–</option>';
+    for(let i=1;i<=8;i++) opts+=`<option value="${i}">${i}</option>`;
+    div.innerHTML=`<div class="ic"><i class="fa-solid ${s.icon}"></i></div><div class="lbl">${s.label}</div><select>${opts}</select>`;
+    grid.appendChild(div);
+  });
+}
+buildCircuit();
+function checkCircuit(){
+  const cards=document.querySelectorAll('#circuitGrid .circuit-card');
+  let ok=0;
+  cards.forEach(c=>{
+    c.classList.remove('state-correct','state-incorrect');
+    const sel=c.querySelector('select');
+    const good=sel.value===c.dataset.correct;
+    if(sel.value!=='') c.classList.add(good?'state-correct':'state-incorrect');
+    if(good) ok++;
+  });
+  const fb=document.getElementById('fb-circuit');
+  fb.classList.add('show');
+  if(ok===8){fb.className='feedback show ok';fb.innerHTML='<i class="fa-solid fa-circle-check"></i> Bravo, le circuit de stérilisation n\'a plus de secret pour toi ! 8/8 🎉';}
+  else{fb.className='feedback show warn';fb.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> '+ok+'/8 étapes bien placées. Revois la Ressource 2 pour les cases en rouge.';}
+}
+function resetCircuit(){buildCircuit();document.getElementById('fb-circuit').classList.remove('show');}
+
+/* ---------- FACTEURS DE PRODUCTION ---------- */
+const factorItems=[
+  {label:'Autoclave',icon:'fa-temperature-high',cat:'capital'},
+  {label:'Agent de stérilisation',icon:'fa-flask',cat:'matieres'},
+  {label:'Sachet de conditionnement',icon:'fa-bag-shopping',cat:'matieres'},
+  {label:'Laveur-désinfecteur',icon:'fa-soap',cat:'capital'},
+  {label:'Boîte d\'instruments chirurgicaux',icon:'fa-kit-medical',cat:'matieres'},
+  {label:'Compétences en contrôle qualité',icon:'fa-user-check',cat:'travail'}
+];
+const catLabels={capital:'Capital technique',travail:'Travail',matieres:'Matières / consommables'};
+function buildFactors(){
+  const grid=document.getElementById('factorsGrid');
+  grid.innerHTML='';
+  factorItems.forEach((it,idx)=>{
+    const div=document.createElement('div');
+    div.className='chip-item';
+    div.dataset.correct=it.cat;
+    let opts='<option value="">Choisir…</option>';
+    Object.keys(catLabels).forEach(k=>opts+=`<option value="${k}">${catLabels[k]}</option>`);
+    div.innerHTML=`<i class="fa-solid ${it.icon}"></i> ${it.label} <select id="fac${idx}">${opts}</select>`;
+    grid.appendChild(div);
+  });
+}
+buildFactors();
+function checkFactors(){
+  const items=document.querySelectorAll('#factorsGrid .chip-item');
+  let ok=0;
+  items.forEach(div=>{
+    div.classList.remove('state-correct','state-incorrect');
+    const sel=div.querySelector('select');
+    const good=sel.value===div.dataset.correct;
+    if(sel.value!=='') div.classList.add(good?'state-correct':'state-incorrect');
+    if(good) ok++;
+  });
+  const fb=document.getElementById('fb-factors');
+  fb.classList.add('show');
+  if(ok===factorItems.length){fb.className='feedback show ok';fb.innerHTML='<i class="fa-solid fa-circle-check"></i> Tout est classé correctement ! '+ok+'/'+factorItems.length+' 🎉';}
+  else{fb.className='feedback show warn';fb.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> '+ok+'/'+factorItems.length+' bien classés. Réfléchis encore aux cases en rouge.';}
+}
+function resetFactors(){buildFactors();document.getElementById('fb-factors').classList.remove('show');}
+
+/* ---------- ORGANIGRAMME ---------- */
+const orgWords=['cadre de santé / responsable du service','responsable qualité','agents de stérilisation','agent logistique'];
+const orgCorrect={orgsel1:'cadre de santé / responsable du service',orgsel2:'responsable qualité',orgsel3:'agents de stérilisation',orgsel4:'agent logistique'};
+function buildOrg(){
+  ['orgsel1','orgsel2','orgsel3','orgsel4'].forEach(id=>{
+    const sel=document.getElementById(id);
+    sel.innerHTML='<option value="">Choisir…</option>'+orgWords.map(w=>`<option value="${w}">${w}</option>`).join('');
+  });
+}
+buildOrg();
+function checkOrg(){
+  let ok=0;
+  Object.keys(orgCorrect).forEach(id=>{
+    const sel=document.getElementById(id);
+    const box=sel.closest('.org-box');
+    box.classList.remove('state-correct','state-incorrect');
+    const good=sel.value===orgCorrect[id];
+    if(sel.value!=='') box.classList.add(good?'state-correct':'state-incorrect');
+    if(good) ok++;
+  });
+  const fb=document.getElementById('fb-org');
+  fb.classList.add('show');
+  if(ok===4){fb.className='feedback show ok';fb.innerHTML='<i class="fa-solid fa-circle-check"></i> Organigramme complet et correct ! 4/4 🎉';}
+  else{fb.className='feedback show warn';fb.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> '+ok+'/4 cases correctes.';}
+}
+function resetOrg(){buildOrg();document.getElementById('fb-org').classList.remove('show');
+  ['org1','org2','org3','org4'].forEach(id=>document.getElementById(id).classList.remove('state-correct','state-incorrect'));}
+
+/* ---------- ANNEXE 3 : MATCHING ---------- */
+const matchData=[
+  {norm:'NF EN ISO 14937',correct:'B'},
+  {norm:'NF EN 556-1 / 556-2',correct:'D'},
+  {norm:'NF EN ISO 11607',correct:'A'},
+  {norm:'NF S90-351',correct:'C'}
+];
+function buildMatch(){
+  const wrap=document.getElementById('matchList');
+  wrap.innerHTML='';
+  matchData.forEach((m,idx)=>{
+    const row=document.createElement('div');
+    row.className='match-row';
+    row.dataset.correct=m.correct;
+    row.innerHTML=`<div class="match-left">${m.norm}</div>
+      <div class="match-right">
+        <select id="match${idx}"><option value="">–</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select>
+      </div>`;
+    wrap.appendChild(row);
+  });
+}
+buildMatch();
+function checkMatch(){
+  const rows=document.querySelectorAll('#matchList .match-row');
+  let ok=0;
+  rows.forEach(row=>{
+    row.classList.remove('state-correct','state-incorrect');
+    const sel=row.querySelector('select');
+    const good=sel.value===row.dataset.correct;
+    if(sel.value!=='') row.classList.add(good?'state-correct':'state-incorrect');
+    if(good) ok++;
+  });
+  const fb=document.getElementById('fb-match');
+  fb.classList.add('show');
+  if(ok===matchData.length){fb.className='feedback show ok';fb.innerHTML='<i class="fa-solid fa-circle-check"></i> Toutes les normes sont bien associées ! 🎉';}
+  else{fb.className='feedback show warn';fb.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> '+ok+'/'+matchData.length+' associations correctes.';}
+}
+function resetMatch(){buildMatch();document.getElementById('fb-match').classList.remove('show');}
+</script>
+</body>
+</html>
